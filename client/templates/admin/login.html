@@ -1,0 +1,61 @@
+<template name="login">
+    <div id="login-page">
+        <div class="container">
+            <form class="form-login login" action="account">
+                <h2 class="form-login-heading">{{_ "Sign_in"}}</h2>
+                <div class="login-wrap">
+                    <input type="text" class="form-control" name="email" id="email" placeholder="{{_ 'Email'}}" autofocus>
+                    <br>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="{{_ 'Password'}}">
+                    <label class="checkbox">
+		                <span class="pull-right">
+		                    <a data-toggle="modal" href="login#myModal"> {{_ "Forgot_password"}}?</a>
+		                </span>
+                    </label>
+                    <button class="btn btn-theme btn-block" href="{{pathFor route='account'}}" type="submit"><i
+                            class="fa fa-lock"></i>
+                        {{_ "Sign_in"}}
+                    </button>
+
+                    <hr>
+
+                    <div class="login-social-link centered">
+                        <p>{{_ "Social_sign_in"}}</p>
+                        <button class="btn btn-facebook" id="login-facebook"><i class="fa fa-facebook"></i></button>
+                        <button class="btn btn-vk" id="login-vk"><i class="fa fa-vk"></i></button>
+                    </div>
+                    <div class="registration">
+                        {{_ "No_account"}}?<br/>
+                        <a href="{{pathFor route='register'}}">
+                            {{_ "Create_account"}}
+                        </a>
+                    </div>
+
+                </div>
+                <!-- {{> reset_modal}} -->
+            </form>
+        </div>
+    </div>
+</template>
+<template name="reset_modal">
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">{{_ "Forgot_password"}}?</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{_ "Email_reset_password"}}.</p>
+                    <input type="text" name="email" placeholder="{{_ 'Email'}}" autocomplete="off" class="form-control placeholder-no-fix js-reset-email">
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">{{_ "Cancel"}}</button>
+                    <button class="btn btn-theme js-reset-submit" type="button">{{_ "Submit"}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal -->
+</template>

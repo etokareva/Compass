@@ -1,0 +1,44 @@
+<template name="students">
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <h3>{{_ "Students"}}</h3>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content-panel">
+                        <table class="table table-advance table-hover">
+                            <thead>
+                            <tr>
+                                <th><i class="fa fa-users"></i> {{_ "Students"}}</th>
+                                <th><i class="fa fa-skype"></i> {{_ "Skype_nickname"}}</th>
+                                <th><i class="fa fa-bookmark"></i> {{_ "Lessons_left"}}</th>
+                                <th><i class=" fa fa-edit"></i> {{_ "Payment_status"}}</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {{> student}}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /content-panel -->
+                </div>
+                <!-- /col-md-12 -->
+            </div>
+            <!-- /row -->
+
+        </section>
+    </section>
+    <!--main content end-->
+</template>
+<template name="student">
+{{#each students_table}}
+    <tr>
+        <td><a href="#">{{profile.name}}</a></td>
+        <td><a href="mailTo:{{profile.email}}">{{profile.email}}</a></td>
+        <td><a href="#">Skype nickname</a></td>
+        <td></td>
+    </tr>
+{{/each}}
+</template>

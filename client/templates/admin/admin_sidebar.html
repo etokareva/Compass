@@ -1,0 +1,48 @@
+<template name="admin_sidebar">
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu" id="nav-accordion">
+                <li class="mt">
+                    <a href="{{pathFor route='account'}}">
+                        <i class="fa fa-user"></i>
+                        <span>{{_ "Profile"}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{pathFor route='calendar'}}">
+                        <i class="fa fa-calendar"></i>
+                        <span>{{_ "Your_schedule"}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{pathFor route='students'}}">
+                        <i class="fa fa-users"></i>
+                        <span>{{_ "Students"}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{pathFor route='teachers'}}">
+                        <i class="fa fa-graduation-cap"></i>
+                        <span>{{_ "Teachers"}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span>{{_ "Learning_materials"}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{pathFor route='roles'}}">
+                        <i class="fa fa-database"></i>
+                        <span>{{_ "Roles"}}</span>
+                    </a>
+                </li>
+            </ul>
+            <!-- sidebar menu end-->
+        </div>
+    </aside>
+    <!--sidebar end-->
+</template>

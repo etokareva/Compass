@@ -1,0 +1,79 @@
+<template name="account">
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <h3>{{_ "Profile_info"}}</h3>
+            <!-- account main -->
+            <div class="white-panel white-panel-account">
+                <div class="row">
+                    <div class="col-md-3">
+                        {{#if currentUser.services.facebook}}
+                            <img alt="{{currentUser.services.facebook.name}}" width="160" src="http://graph.facebook.com/{{currentUser.services.facebook.id}}/picture?type=large" class="img-circle pull-right mt"/>
+                        {{else}}{{#if currentUser.services.vk}}
+                            <img alt="{{currentUser.profile.name}}" width="160" src="{{currentUser.services.vk.photo_big}}" class="img-circle pull-right mt"/>
+                        {{else}}
+                            <a href="#">Add avatar</a>
+                        {{/if}}{{/if}}
+                        
+                    </div>
+                    <div class="col-md-9">
+                        <h1 id="name">{{currentUser.profile.name}}</h1>
+                        <a class="button button-secondary" href="/account/edit">{{_ "Edit_profile"}}</a>
+                        <div class="row mt">
+                            <div class="col-md-4">
+                                <p class="small mt">{{_ "Username"}}</p>
+                                <p>{{currentUser.profile.name}}</p>
+                            </div>
+                            <div class="col-md-8">
+                                <p class="small mt">{{_ "Email"}}</p>
+                                    <p>{{currentUser.profile.email}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end account main -->
+        </section>
+    </section>
+</template>
+<template name="account_edit">
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <!-- account main -->
+            <div class="col-lg-12">
+                <div class="form-panel">
+                    <h4 class="mb">{{_ "Profile_info"}}</h4>
+
+                    <form class="form-horizontal style-form edit" method="get">
+                        <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">{{_ "First_name"}}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="firstname"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">{{_ "Last_name"}}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="lastname"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">{{_ "Username"}}</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="username" placeholder="{{currentUser.profile.name}}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">{{_ "Email"}}</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="email" placeholder="{{currentUser.profile.email}}">
+                                </div>
+                            </div>
+                            
+                         <button href="{{pathFor route='account'}}" type="submit" class="btn btn-success">{{_ "Save_changes"}}</button>
+                    </form>
+                </div>
+            </div>
+            <!-- end account main -->
+        </section>
+    </section>
+</template>

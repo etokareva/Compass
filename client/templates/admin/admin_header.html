@@ -1,0 +1,57 @@
+<template name="admin_header">
+    <!--header start-->
+    <header class="header black-bg">
+        <div class="sidebar-toggle-box">
+            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+        </div>
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+             <!--logo start-->
+            <div class="navbar-header">
+                <a href="/" class="logo"><b>{{{company_name}}}</b></a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {{> language_menu_item}}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle header_profile_dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                    {{#if currentUser.services.facebook}}
+                        {{currentUser.profile.name}}
+                        <img src="http://graph.facebook.com/{{currentUser.services.facebook.id}}/picture" alt="{{currentUser.services.facebook.name}}" class="img-circle"/> <!-- small || normal || large || square -->
+                    
+                    {{else}}{{#if currentUser.services.vk}}
+                        {{currentUser.profile.name}}
+                        <img src="{{currentUser.services.vk.photo}}" alt="{{profile.name}}" class="img-circle"/>
+                    {{else}}
+                        {{currentUser.profile.name}}
+                        <img class="img-circle" src="" alt="{{username}}"/>
+                    {{/if}}{{/if}}
+
+
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{{pathFor route='account'}}">{{_ "Profile"}}</a></li>
+                      <li><a href="#" class="logout">{{_ "Logout"}}</a></li>
+                    </ul>
+              </li>
+            </ul>
+        </nav>
+    </header>
+    <!--header end-->
+</template>
+<template name="language_menu_item">
+{{#if i18n_enabled}}
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {{_ "Language"}}<span class="caret"></span>
+                <ul class="dropdown-menu">
+                    {{#each i18n_sortedLanguages}}
+                    <li><a href="#" class="js-language-change" data-locale="{{tag}}">{{name}}</a></li>
+                    {{/each}}
+                </ul>
+        </a>
+    </li>
+{{else}}
+    <li>
+        <span class="i18n-not-found">No i18n files found</span>
+    </li>
+{{/if}}
+</template>

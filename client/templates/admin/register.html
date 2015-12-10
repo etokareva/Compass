@@ -1,0 +1,35 @@
+<template name="register">
+    <div id="register-page">
+        <div class="container">
+            <form class="form-login form-register js-form-register" action="account">
+                <h2 class="form-login-heading">{{_ "Join_us"}}</h2>
+                <div class="login-wrap">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="{{_ 'Username'}}" autofocus>
+                    <br>
+                    <input type="email" class="form-control" name="email" id="email" placeholder="{{_ 'Email'}}" autofocus>
+                    <br>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="{{_ 'Password'}}">
+                    <br>
+                    <button class="btn btn-theme btn-block" href="{{pathFor route='account'}}" type="submit"><i class="fa fa-lock"></i>
+                        {{_ "Register"}}
+                    </button>
+
+                    <hr>
+
+                    <div class="login-social-link centered">
+                        <p>{{_ "Social_register"}}</p>
+                        <button class="btn btn-facebook" id="login-facebook"><i class="fa fa-facebook"></i></button>
+                        <button class="btn btn-vk" id="login-vk"><i class="fa fa-vk"></i></button>
+                    </div>
+                    <div class="registration">
+                        {{_ "Have_account"}}?<br/>
+                        <a class="" href="{{pathFor route='login'}}">
+                            {{_ "Sign_in"}}
+                        </a>
+                    </div>
+                </div>
+                <!-- {{> reset_modal}} -->
+            </form>
+        </div>
+    </div>
+</template>
