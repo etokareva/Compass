@@ -18,3 +18,38 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
+frabrunelle:fittext
+service-configuration
+twbs:bootstrap
+natestrauser:animate-css
+natestrauser:font-awesome
+timmyg:wow
+mrt:jquery-easing
+noorderstorm:stellar
+mrt:fancybox
+mrt:chartjs
+rzymek:fullcalendar
+crunya:ermini-notify
+bigdsk:inputmask
+natestrauser:jquery-scrollto
+jackyqiu:meteor-jquery-nicescroll
+benmgreene:jquery-sparklines
+goltfisch:jquery-backstretch
+keryi:meteor-dcaccordion
+ajduke:bootstrap-tagsinput
+dsyko:jquery-ui-touch-punch
+mizzao:jquery-ui
+jt6562:bootstrap-3-switch
+iron:router
+mrt:bootstrap-select
+matb33:bootstrap-glyphicons
+email
+accounts-oauth
+accounts-base
+accounts-password
+accounts-facebook
+meteorhacks:ssr
+tap:i18n
+tap:i18n-db
+tap:i18n-ui
+mrt:accounts-vk
