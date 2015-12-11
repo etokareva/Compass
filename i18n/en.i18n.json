@@ -58,5 +58,6 @@
 	"Roles":"Roles",
 	"Teacher":"Teacher",
 	"Student":"Student",
-	"Error":"Error"
+	"Error":"Error",
+	"Go_to_admin":"Go to admin"
  }

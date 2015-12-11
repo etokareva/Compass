@@ -23,7 +23,7 @@
     {{> yield "main"}}
 </template>
 <template name="navbar-test">
-    <nav id="mainNav" class="navbar navbar-default">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -39,7 +39,13 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Link</a></li>
+            <li>
+                {{#if currentUser}}
+                    <a href="{{pathFor route='account'}}">{{_ "Go_to_admin"}}</a>
+                {{else}}
+                    <a href="{{pathFor route='login'}}">{{_ "Sign_in"}}</a>
+                {{/if}}
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{_ "About"}} <span class="caret"></span></a>
               <ul class="dropdown-menu">
