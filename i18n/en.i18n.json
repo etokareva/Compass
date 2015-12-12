@@ -62,5 +62,6 @@
 	"Error":"Error",
 	"Go_to_admin":"Go to admin",
 	"When":"When",
-	"Create_Appointment":"Create appointment"
+	"Create_Appointment":"Create appointment",
+	"Delete":"Delete"
  }

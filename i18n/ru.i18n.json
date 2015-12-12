@@ -62,5 +62,6 @@
 	"Error": "Ошибка",
 	"Go_to_admin":"Панель управления",
 	"When":"Когда",
-	"Create_Appointment":"Назначить урок"
+	"Create_Appointment":"Назначить урок",
+	"Delete":"Удалить"
 }

@@ -17,7 +17,9 @@
     </section>
     <!--/wrapper -->
     <!-- modal start -->
-        {{> calendar_modal}}
+
+    {{>editEvent}}
+        <!-- {{> calendar_modal}} -->
     <!-- modal end -->
 </template>
 <template name="calendar_modal">
@@ -54,5 +56,28 @@
         </div>
     </div>
 </template>
-  
+<template name="editEvent">
+    <!--Modal Dialog-->
+    <div class="calendar_modal modal fade in" id="EditEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-remove"></i></button>
+            <h3 id="myModalTitle">{{_ "Create_Appointment"}}</h3>
+          </div>
+          <div class="modal-body">
+            <label for="title" class="control-label">{{_ "Student"}}:</label>
+            <div class="controls">
+                <input type="text" class="title" name="title" placeholder="{{evt.title}}" id="title">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="#" class="btn btn-danger remove" data-dismiss="modal" aria-hidden="true">{{_ "Delete"}}</a>
+            <a href="#" class="btn btn-primary save" data-dismiss="modal" aria-hidden="true">{{_ "Save"}}</a>
+            <a href="#" class="btn close" data-dismiss="modal" aria-hidden="true">{{_ "Cancel"}}</a>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+</template>
 

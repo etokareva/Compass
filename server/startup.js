@@ -17,5 +17,11 @@ Accounts.config({
 Meteor.methods({
 	'saveCalEvent':function(ce){
 		CalEvent.insert(ce);
-	}
+	},
+	'updateCalEvent' : function(id,title){
+		CalEvent.update(id, {$set: {title:title}});
+	},
+	'removeCalEvent' : function(id){
+		CalEvent.remove({_id:id});
+	} 
 });
