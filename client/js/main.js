@@ -197,95 +197,8 @@ Template.AdminLayout.events({
     }
 });
 
-// Template.calendar.onRendered(function() {
-    // /* initialize the external events
-    //  -----------------------------------------------------------------*/
 
-    // $('#external-events div.external-event').each(function() {
-    //     // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-    //     // it doesn't need to have a start or end
-    //     var eventObject = {
-    //         title: $.trim($(this).text()) // use the element's text as the event title
-    //     };
-    //     // store the Event Object in the DOM element so we can get to it later
-    //     $(this).data('eventObject', eventObject);
-    //     // make the event draggable using jQuery UI
-    //     $(this).draggable({
-    //         zIndex: 999,
-    //         revert: true, // will cause the event to go back to its
-    //         revertDuration: 0 //  original position after the drag
-    //     });
-
-//     });
-
-
-//     /* initialize the calendar
-//      -----------------------------------------------------------------*/
-
-//     var date = new Date();
-//     var d = date.getDate();
-//     var m = date.getMonth();
-//     var y = date.getFullYear();
-
-//     $('#calendar').fullCalendar({
-//         header: {
-//             left: 'prev,next today',
-//             center: 'title',
-//             right: 'month,basicWeek,basicDay'
-//         },
-//         editable: true,
-//         droppable: true, // this allows things to be dropped onto the calendar !!!
-//         drop: function(date, allDay) { // this function is called when something is dropped
-
-//             // retrieve the dropped element's stored Event Object
-//             var originalEventObject = $(this).data('eventObject');
-
-//             // we need to copy it, so that multiple events don't have a reference to the same object
-//             var copiedEventObject = $.extend({}, originalEventObject);
-
-//             // assign it the date that was reported
-//             copiedEventObject.start = date;
-//             copiedEventObject.allDay = allDay;
-
-//             // render the event on the calendar
-//             // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-//             $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-
-//             // is the "remove after drop" checkbox checked?
-//             if ($('#drop-remove').is(':checked')) {
-//                 // if so, remove the element from the "Draggable Events" list
-//                 $(this).remove();
-//             }
-//         },
-//         events: []
-//     });
-// });
 Template.calendar.helpers({
-    // events: function () {
-    //         var fc = $('.fc');
-    //         return function (start, end, tz, callback) {
-    //             //subscribe only to specified date range
-    //             Meteor.subscribe('events', start.toDate(), end.toDate(), function () {
-    //                 //trigger event rendering when collection is downloaded
-    //                 fc.fullCalendar('refetchEvents');
-    //             });
-
-    //             //find all, because we've already subscribed to a specific range
-    //             var events = Events.find().map(function (it) {
-    //                 return {
-    //                     title: it.date.toISOString(),
-    //                     start: it.date,
-    //                     allDay: false
-    //                 };
-    //             });
-    //             callback(events);
-    //         };
-    // },
-    // onEventClicked: function() {
-    //         return function(calEvent, jsEvent, view) {
-    //             alert("Event clicked: "+calEvent.title);
-    //         }
-    // },
     options: function() {
         language = TAPi18n.getLanguage();
         return {
@@ -305,37 +218,45 @@ Template.calendar.helpers({
             allDaySlot:false,
             selectable:true,
             minTime:"07:00:00",
-            // select: function(){
+            editable: true,
+                //         droppable: true, // this allows things to be dropped onto the calendar !!!
+                //         drop: function(date, allDay) { // this function is called when something is dropped
+
+                //             // retrieve the dropped element's stored Event Object
+                //             var originalEventObject = $(this).data('eventObject');
+
+                //             // we need to copy it, so that multiple events don't have a reference to the same object
+                //             var copiedEventObject = $.extend({}, originalEventObject);
+
+                //             // assign it the date that was reported
+                //             copiedEventObject.start = date;
+                //             copiedEventObject.allDay = allDay;
+
+                //             // render the event on the calendar
+                //             // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+                //             $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+
+                //             // is the "remove after drop" checkbox checked?
+                //             if ($('#drop-remove').is(':checked')) {
+                //                 // if so, remove the element from the "Draggable Events" list
+                //                 $(this).remove();
+                //             }
+            // dayClick: function(date, allDay, jsEvent, view) {
+            //     var calendarEvent = {};
+            //     calendarEvent.start = date;
+            //     calendarEvent.end = date;
+            //     calendarEvent.title = 'New event';
+            //     calendarEvent.owner = Meteor.userId;
+            //     Meteor.call('saveCalEvent', calendarEvent);
+
+            //     starttime = date.format('hh:mm');
+            //     $('#createEventModal #when').text(starttime);
             //     $("#createEventModal").modal('show');
             // },
-            dayClick: function(date, jsEvent, view) {
-                endtime = date.format('hh:mm');
-                // starttime = $.fullCalendar.formatDate(start,'ddd, MMM d, h:mm tt');
-                // var mywhen = starttime + ' - ' + endtime;
-                // $('#createEventModal #apptStartTime').val(start);
-                // $('#createEventModal #apptEndTime').val(endtime);
-                // $('#createEventModal #apptAllDay').val(allDay);
-                $('#createEventModal #when').text(endtime);
-                $("#createEventModal").modal('show');
-                // $("#createEventModal").modal('show');
-
-                // alert('Clicked on: ' + date.format());
-
-                // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-
-                // alert('Current view: ' + view.name);
-
-                // // change the day's background color just for fun
-                // $(this).css('background-color', 'red');
-
+            events: function(start, end, callback){
+                var calEvents = CalEvent.find({}, {reactive:false}).fetch();
+                callback(calEvents);
             },
-            events: Events.find().map(function (it) {
-                    return {
-                        title: it.date.toISOString(),
-                        start: it.date,
-                        allDay: false
-                    }
-            }),
             
             eventClick: function(calEvent, jsEvent, view) {
 
@@ -354,25 +275,12 @@ Template.calendar.rendered = function () {
     this.autorun(function () {
         //1) trigger event re-rendering when the collection is changed in any way
         //2) find all, because we've already subscribed to a specific range
-        Events.find();
-        fc.fullCalendar('refetchEvents');
+        CalEvent.find().fetch();
+        if(fc.length){
+            fc.fullCalendar('refetchEvents');
+        }
     });
 };
-
-// Template.calendar.events({
-//     'click .addEvent': function () {
-//         Events.insert({
-//             date: new Date()
-//         })
-//     },
-//     'click .removeEvent':function() {
-//         var event = Events.findOne();
-//         if(event) {
-//             Events.remove(event._id);
-//         }
-//     }
-// });
-
 
 Template.login.onRendered(function() {
     $.backstretch("img/login-bg.jpg", {

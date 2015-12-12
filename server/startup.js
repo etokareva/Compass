@@ -13,3 +13,9 @@ Accounts.config({
 
 // Session.setDefault("editing_calEvent", null);
 // Session.setDefault("showEditEvent", false);
+
+Meteor.methods({
+	'saveCalEvent':function(ce){
+		CalEvent.insert(ce);
+	}
+});
