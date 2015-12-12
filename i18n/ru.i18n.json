@@ -12,6 +12,7 @@
 	"Email":"Электронный адрес",
 	"First_name":"Имя",
 	"Last_name":"Фамилия",
+	"Save":"Сохранить",
 	"Save_changes":"Сохранить изменения",
 	"Remove_After_Drop":"Удалить После Перетаскивания",
 	"Skype_nickname":"Имя в Skype",
@@ -59,5 +60,7 @@
 	"Teacher":"Преподаватель",
 	"Student":"Студент",
 	"Error": "Ошибка",
-	"Go_to_admin":"Панель управления"
+	"Go_to_admin":"Панель управления",
+	"When":"Когда",
+	"Create_Appointment":"Назначить урок"
 }

@@ -12,6 +12,7 @@
 	"Email":"Email",
 	"First_name":"First name",
 	"Last_name":"Last name",
+	"Save":"Save",
 	"Save_changes":"Save changes",
 	"Remove_After_Drop":"Remove After Drop",
 	"Skype_nickname":"Skype nickname",
@@ -59,5 +60,7 @@
 	"Teacher":"Teacher",
 	"Student":"Student",
 	"Error":"Error",
-	"Go_to_admin":"Go to admin"
+	"Go_to_admin":"Go to admin",
+	"When":"When",
+	"Create_Appointment":"Create appointment"
  }

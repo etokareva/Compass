@@ -287,8 +287,9 @@ Template.calendar.helpers({
     //         }
     // },
     options: function() {
+        language = TAPi18n.getLanguage();
         return {
-            // lang:"ru",
+            lang:language,
             defaultView: 'agendaWeek',
             height: "auto",
             header: {
@@ -302,17 +303,30 @@ Template.calendar.helpers({
             editable: true,
             droppable: true,
             allDaySlot:false,
+            selectable:true,
             minTime:"07:00:00",
+            // select: function(){
+            //     $("#createEventModal").modal('show');
+            // },
             dayClick: function(date, jsEvent, view) {
+                endtime = date.format('hh:mm');
+                // starttime = $.fullCalendar.formatDate(start,'ddd, MMM d, h:mm tt');
+                // var mywhen = starttime + ' - ' + endtime;
+                // $('#createEventModal #apptStartTime').val(start);
+                // $('#createEventModal #apptEndTime').val(endtime);
+                // $('#createEventModal #apptAllDay').val(allDay);
+                $('#createEventModal #when').text(endtime);
+                $("#createEventModal").modal('show');
+                // $("#createEventModal").modal('show');
 
-                alert('Clicked on: ' + date.format());
+                // alert('Clicked on: ' + date.format());
 
-                alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
 
-                alert('Current view: ' + view.name);
+                // alert('Current view: ' + view.name);
 
-                // change the day's background color just for fun
-                $(this).css('background-color', 'red');
+                // // change the day's background color just for fun
+                // $(this).css('background-color', 'red');
 
             },
             events: Events.find().map(function (it) {
@@ -331,7 +345,6 @@ Template.calendar.helpers({
 
                 // change the border color just for fun
                 $(this).css('border-color', 'red');
-
             }
         }
     }
@@ -349,8 +362,7 @@ Template.calendar.rendered = function () {
 // Template.calendar.events({
 //     'click .addEvent': function () {
 //         Events.insert({
-//             date: new Date(),
-//             comment:"Katia"
+//             date: new Date()
 //         })
 //     },
 //     'click .removeEvent':function() {
