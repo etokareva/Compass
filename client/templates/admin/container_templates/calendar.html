@@ -4,27 +4,10 @@
             <h3>{{_ "Your_schedule"}}</h3>
             <!-- page start-->
             <div class="row mt">
-                <aside class="col-lg-3 mt">
-                    <div id="external-events">
-                        <div class="external-event label label-theme">My Event 1</div>
-                        <div class="external-event label label-success">My Event 2</div>
-                        <div class="external-event label label-info">My Event 3</div>
-                        <div class="external-event label label-warning">My Event 4</div>
-                        <div class="external-event label label-danger">My Event 5</div>
-                        <div class="external-event label label-default">My Event 6</div>
-                        <div class="external-event label label-theme">My Event 7</div>
-                        <div class="external-event label label-info">My Event 8</div>
-                        <div class="external-event label label-success">My Event 9</div>
-                        <p class="drop-after">
-                            <input type="checkbox" id="drop-remove">
-                            {{_ "Remove_After_Drop"}}
-                        </p>
-                    </div>
-                </aside>
-                <aside class="col-lg-9 mt">
+                <aside class="col-lg-12 mt">
                     <section class="panel">
                         <div class="panel-body">
-                            <div id="calendar" class="has-toolbar"></div>
+                            {{> fullcalendar options class="mainCalendar"}}
                         </div>
                     </section>
                 </aside>
@@ -34,3 +17,35 @@
     </section>
     <!--/wrapper -->
 </template>
+<template name="calendar_modal">
+    <div id="createEventModal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3 id="myModalLabel1">Create Appointment</h3>
+        </div>
+        <div class="modal-body">
+            <form id="createAppointmentForm" class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputPatient">Patient:</label>
+                    <div class="controls">
+                        <input type="text" name="patientName" id="patientName" tyle="margin: 0 auto;" data-provide="typeahead" data-items="4" data-source="[&quot;Value 1&quot;,&quot;Value 2&quot;,&quot;Value 3&quot;]">
+                          <input type="hidden" id="apptStartTime"/>
+                          <input type="hidden" id="apptEndTime"/>
+                          <input type="hidden" id="apptAllDay" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="when">When:</label>
+                    <div class="controls controls-row" id="when" style="margin-top:5px;">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button type="submit" class="btn btn-primary" id="submitButton">Save</button>
+        </div>
+    </div>
+</template>
+  
+

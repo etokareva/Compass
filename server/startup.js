@@ -10,3 +10,6 @@ Accounts.config({
 //  };
     
 // process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+
+// Session.setDefault("editing_calEvent", null);
+// Session.setDefault("showEditEvent", false);
