@@ -1,1 +1,3 @@
 local
+server/mail-config.js
+server/social-config.js

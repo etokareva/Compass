@@ -51,9 +51,13 @@ Template.calendar.helpers({
 				//Trigger the modal bootstrap 3 box as defined in the calendar.html page
 				$('#EditEventModal').modal("show");
 			},
+			eventDragStart:function(){
+				Session.set('editing_calevent',calEvent.id);
+			},
 			eventDrop:function(calEvent){
-				CalEvent.update(calEvent.id, {$set: {start:calEvent.start,end:calEvent.end}});
-	
+				console.log(calEvent.id);
+				// CalEvent.update({_id: calEvent._id}, {$set: {start:calEvent.start,end:calEvent.end}},{upsert:true});
+				Meteor.call('updateCalEventOnDrop', Session.get('editing_calevent'));
 			},
 			events: function(start, end, timezone, callback) {
 				// Create an empty array to store the events
@@ -63,7 +67,7 @@ Template.calendar.helpers({
 				calEvent = CalEvent.find();
 				// Do a for each loop and add what you find to events array
 				calEvent.forEach(function(evt){
-					events.push({	id:evt._id,title:evt.title,start:evt.start,end:evt.end});
+					events.push({id:evt._id,title:evt.title,start:evt.start,end:evt.end});
 				})
 				
 				// Callback to pass events back to the calendar
