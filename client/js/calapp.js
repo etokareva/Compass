@@ -32,32 +32,31 @@ Template.calendar.helpers({
             slotLabelFormat:"HH:mm",
             handleWindowResize:true,
             editable: true,
-            droppable: true,
+            //droppable: true,
             allDaySlot:false,
             selectable:true,
             minTime:"07:00:00",
 			// Event triggered when someone clicks on a day in the calendar
 			dayClick:function( date, allDay, jsEvent, view) {
 				// Insert the day someone's clicked on
-				CalEvent.insert({title:'New Item',start:date.toISOString(),end:date.toISOString()});
+				CalEvent.insert({title:'New Item',start:date.toISOString(),end:date.add(45, 'm').toISOString()});
 				// Refreshes the calendar
-	
+
 			},
 			eventClick:function(calEvent,jsEvent,view){
-				// Set the editing_calevent variable to equal the calEvent.id
+				// Set t
+				// he editing_calevent variable to equal the calEvent.id
 				Session.set('editing_calevent',calEvent.id);
 				// Set the showEditEvent variable to true
 				Session.set('showEditEvent', true);
 				//Trigger the modal bootstrap 3 box as defined in the calendar.html page
 				$('#EditEventModal').modal("show");
 			},
-			eventDragStart:function(){
-				Session.set('editing_calevent',calEvent.id);
-			},
+			//eventDragStart:function(calEvent,jsEvent,view){
+			//	Session.set('editing_calevent',calEvent);
+			//},
 			eventDrop:function(calEvent){
-				console.log(calEvent.id);
-				// CalEvent.update({_id: calEvent._id}, {$set: {start:calEvent.start,end:calEvent.end}},{upsert:true});
-				Meteor.call('updateCalEventOnDrop', Session.get('editing_calevent'));
+				//Meteor.call('updateCalEventOnDrop', calEvent);
 			},
 			events: function(start, end, timezone, callback) {
 				// Create an empty array to store the events
@@ -68,12 +67,29 @@ Template.calendar.helpers({
 				// Do a for each loop and add what you find to events array
 				calEvent.forEach(function(evt){
 					events.push({id:evt._id,title:evt.title,start:evt.start,end:evt.end});
-				})
+				});
 				
 				// Callback to pass events back to the calendar
 				callback(events);
 			},
-			editable:true
+            eventRender: function( event, element, view ) {
+                if(event.changing){
+                    Meteor.call('updateCalEventOnDrop', event);
+                }
+            },
+            eventResizeStart: function(event, jsEvent, ui, view ){
+                event.changing = true;
+            },
+            eventResizeEnd: function(event, jsEvent, ui, view ){
+                event.changing = false;
+            },
+            eventDragStart: function(event, jsEvent, ui, view ){
+                event.changing = true;
+                Session.set('editing_calevent',event);
+            },
+            eventDragEnd: function(event, jsEvent, ui, view ){
+                event.changing = false;
+            }
 		}
 	},
 	showEditEvent : function(){

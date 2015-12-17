@@ -877,3 +877,7 @@ section.footer-bottom a{
     color: black;
     font-size: 13px;
 }
+
+.fc-time-grid-event .fc-resizer:after{
+    content:"";
+}
