@@ -11,4 +11,4 @@ This project includes:
 6. Calendar for appointments(lessons) 
 
 
-Not finished yet ( other features comming soon... )
+Not finished yet ( other features comming soon... : roles, chat, diary for students to tell about progress)
